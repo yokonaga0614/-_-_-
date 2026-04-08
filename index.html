@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLCライト 個別サポートミーティング議事録 - 2026/04/08</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 0 0 1rem 1rem;
+        }
+        
+        header h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        header .meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        
+        .card h2 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card h3 {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin: 1.25rem 0 0.75rem;
+        }
+        
+        .card ul {
+            padding-left: 1.5rem;
+        }
+        
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background: #fef3c7;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .info-box {
+            background: #e0f2fe;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border-left: 4px solid var(--success);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        
+        .stat-card {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .stat-card .label {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            margin: 0.25rem;
+        }
+        
+        .tag.secondary {
+            background: var(--secondary);
+        }
+        
+        .tag.accent {
+            background: var(--accent);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background: var(--bg);
+            font-weight: 600;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .next-actions {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: none;
+        }
+        
+        .next-actions h2 {
+            color: #92400e;
+            border-bottom-color: #92400e;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            header {
+                padding: 2rem 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>JLCライト 3ヶ月個別サポート ミーティング議事録</h1>
+            <p>吉江様 × 島田様 × 長野様</p>
+            <div class="meta">
+                <span>📅 2026年4月8日（火）</span>
+                <span>⏱️ 約1時間20分</span>
+                <span>📍 オンライン（Zoom）</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- 会社概要 -->
+        <section class="card">
+            <h2>🏢 会社概要：株式会社ルーク</h2>
+            <div class="grid-2">
+                <div class="stat-card">
+                    <div class="number">15期目</div>
+                    <div class="label">2012年設立・2026年4月〜</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">2拠点</div>
+                    <div class="label">東京本社・大阪（関西3倍規模）</div>
+                </div>
+            </div>
+            
+            <h3>事業内容</h3>
+            <ul>
+                <li><strong>メイン：</strong>モバイルクラウド事業</li>
+                <li>Web制作（ホームページ制作）</li>
+                <li>有形商材・SaaS商材の取り扱い</li>
+                <li>法人向けDXソリューション提案</li>
+            </ul>
+            
+            <h3>組織体制</h3>
+            <ul>
+                <li>代表：岩崎氏</li>
+                <li>役員：森口氏</li>
+                <li>顧問：吉江氏（求人担当・6〜7年従事）</li>
+                <li>平均年齢：約37歳（同業他社比で高め）</li>
+            </ul>
+        </section>
+        
+        <!-- 採用実績 -->
+        <section class="card">
+            <h2>📊 採用の現状と課題</h2>
+            
+            <h3>過去6〜7年の採用実績</h3>
+            <div class="grid-2">
+                <div class="stat-card">
+                    <div class="number">約1,000人</div>
+                    <div class="label">応募者数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">200人以上</div>
+                    <div class="label">面接実施数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">約30人</div>
+                    <div class="label">採用人数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">約2,000万円</div>
+                    <div class="label">採用費用総額（年間約300万円）</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <strong>課題：</strong>業者任せで採用ノウハウが蓄積されていない
+            </div>
+            
+            <h3>今期の採用目標（9月まで）</h3>
+            <table>
+                <tr>
+                    <th>拠点</th>
+                    <th>職種</th>
+                    <th>人数</th>
+                </tr>
+                <tr>
+                    <td>関西（大阪市内）</td>
+                    <td>営業</td>
+                    <td>2名</td>
+                </tr>
+                <tr>
+                    <td>東京（高田馬場）</td>
+                    <td>営業</td>
+                    <td>1名</td>
+                </tr>
+            </table>
+            
+            <h3>人材紹介会社の現状</h3>
+            <ul>
+                <li>成功報酬：<strong>40〜45%</strong>（3年前は30%だった）</li>
+                <li>年収400万円未満でも160万円程度のコスト</li>
+                <li>3ヶ月の返金規定 → 4ヶ月目以降の退職リスク</li>
+                <li>完全成功報酬型の人材紹介会社と複数契約中</li>
+            </ul>
+        </section>
+        
+        <!-- ターゲット設定 -->
+        <section class="card">
+            <h2>🎯 採用ターゲット設定</h2>
+            
+            <h3>メインターゲット</h3>
+            <div class="info-box">
+                <strong>22〜28歳 / 未経験OK / IT志向強めの若者</strong><br>
+                ※第二新卒含む（高卒以上OK）
+            </div>
+            
+            <h3>ターゲット属性キーワード</h3>
+            <div style="margin: 1rem 0;">
+                <span class="tag">Z世代</span>
+                <span class="tag">AIネイティブ</span>
+                <span class="tag">デジタルネイティブ</span>
+                <span class="tag secondary">生成AI</span>
+                <span class="tag secondary">業務自動化</span>
+                <span class="tag secondary">ノーコード</span>
+                <span class="tag accent">プロンプト活用</span>
+                <span class="tag accent">独学・自己研鑽</span>
+                <span class="tag accent">タイパ重視</span>
+            </div>
+            
+            <h3>採用方針キーワード</h3>
+            <div style="margin: 1rem 0;">
+                <span class="tag">AI × 営業</span>
+                <span class="tag">脱根性営業</span>
+                <span class="tag">スマートワーク</span>
+                <span class="tag secondary">未経験歓迎</span>
+                <span class="tag secondary">転職回数不問</span>
+                <span class="tag secondary">IT適正重視</span>
+                <span class="tag accent">将来の幹部候補</span>
+            </div>
+            
+            <h3>サブターゲット（経験者）</h3>
+            <ul>
+                <li>モバイル販売経験者（店頭接客経験あり）</li>
+                <li>法人営業経験者</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <strong>重要な気づき：</strong>ターゲットの「悩み」と「願望」を深掘りする必要がある
+            </div>
+        </section>
+        
+        <!-- 議論のポイント -->
+        <section class="card">
+            <h2>💡 ミーティングでの重要な議論</h2>
+            
+            <h3>1. ターゲット設定の深掘りが必要</h3>
+            <ul>
+                <li>現状は「要件」レベルで止まっている</li>
+                <li><strong>悩み・願望</strong>を明確にすることで、キーワードリサーチ・競合リサーチがスムーズになる</li>
+                <li>既存の活躍社員へのインタビューが有効</li>
+                <li>身近にいなければAIを活用して仮説を立てる</li>
+            </ul>
+            
+            <h3>2. 未経験者採用の視点</h3>
+            <div class="info-box">
+                <strong>島田氏からの提言：</strong><br>
+                令和の若者の特徴を理解することが重要
+                <ul style="margin-top: 0.5rem;">
+                    <li>怒られ慣れていない</li>
+                    <li>自分の成長を重視</li>
+                    <li>ワークライフバランス重視（残業NG）</li>
+                    <li>仕事とプライベートの切り分けが明確</li>
+                    <li>やりがい・成長も求めている</li>
+                </ul>
+            </div>
+            
+            <h3>3. 求人の訴求ポイント</h3>
+            <table>
+                <tr>
+                    <th>経験者が転職を考える理由</th>
+                    <th>会社の強み</th>
+                </tr>
+                <tr>
+                    <td>土日が休めない（店頭勤務）</td>
+                    <td>土日休み（法人営業）</td>
+                </tr>
+                <tr>
+                    <td>休日も連絡が来る</td>
+                    <td>オンオフの切り分け可能</td>
+                </tr>
+                <tr>
+                    <td>家族との時間が取れない</td>
+                    <td>年間休日127日（+有給5日で132日）</td>
+                </tr>
+                <tr>
+                    <td>残業・サービス残業が多い</td>
+                    <td>定時退社推奨（18時半までに退社）</td>
+                </tr>
+            </table>
+            
+            <h3>4. 注意点</h3>
+            <ul>
+                <li>専門性や会社の強みを前面に出しすぎると、未経験者が「難しそう」と感じる</li>
+                <li>「IT楽しそう」「AI面白い」というライトな入口が重要</li>
+                <li>IT/AI訴求 → システムエンジニア求人（高年収）とバッティングするリスクあり</li>
+                <li>初任給25万円は30万円スタートの他社と比較すると見劣りする</li>
+            </ul>
+        </section>
+        
+        <!-- 社内事例 -->
+        <section class="card">
+            <h2>👤 社内の成功事例：26歳男性社員</h2>
+            <ul>
+                <li>携帯販売経験あり、今どきの若者</li>
+                <li>18時定時 → 18時半までには必ず退社</li>
+                <li>土日は完全にオフ（チャットも見ない）</li>
+                <li>しかし営業では「しつこい」とクレームが来るほど粘り強い</li>
+                <li>会社の方針に納得すれば愚直にやり切る</li>
+            </ul>
+            <div class="success-box">
+                <strong>経営陣の評価：</strong><br>
+                経験豊富な30代より、素直で成長意欲のある20代の方が将来性がある。<br>
+                新事業や別会社の部長候補として期待。
+            </div>
+        </section>
+        
+        <!-- 今後のステップ -->
+        <section class="card next-actions">
+            <h2>📋 次回までのアクション</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>ターゲットの深掘り</strong>
+                    <ul>
+                        <li>22〜28歳のIT志向若者の「悩み」を具体化</li>
+                        <li>仕事探し時の「願望」を明確化</li>
+                        <li>サブターゲット（経験者）の悩み・願望も整理</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <strong>参考にすべき事例</strong>
+                    <ul>
+                        <li>竹井さんのキーワードリサーチ事例</li>
+                        <li>美容室求人のターゲット設定例（子育て中の復帰希望者）</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <strong>キーワードリサーチ</strong>
+                    <ul>
+                        <li>ターゲット設定完了後に着手</li>
+                        <li>悩み・願望が明確になれば、検索キーワードや競合が見えてくる</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- スケジュール -->
+        <section class="card">
+            <h2>📅 今後のスケジュール</h2>
+            <table>
+                <tr>
+                    <th>日程</th>
+                    <th>内容</th>
+                    <th>備考</th>
+                </tr>
+                <tr>
+                    <td><strong>4月21日（月）</strong></td>
+                    <td>JLCグループコンサルティング</td>
+                    <td>マインドマップを前日までに提出</td>
+                </tr>
+                <tr>
+                    <td>4月23日（水）</td>
+                    <td>JPCグループコンサルティング</td>
+                    <td>島田・長野参加</td>
+                </tr>
+                <tr>
+                    <td>4月28日（月）</td>
+                    <td>事例発表会</td>
+                    <td>浦川さん？</td>
+                </tr>
+                <tr>
+                    <td><strong>4月30日（水）20:00〜</strong></td>
+                    <td>個別サポート3回目</td>
+                    <td>グルコン後のフィードバックを踏まえて</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- 参加者メモ -->
+        <section class="card">
+            <h2>📝 その他のメモ</h2>
+            <ul>
+                <li>吉江さんの娘さん：28歳（フランス在住・オンライン英語講師）、26歳（専業主婦・2人目妊娠中）</li>
+                <li>「自分の子供を採用するような視点」でターゲットを考えると良い</li>
+                <li>ハローワークの達人（長野さん担当）も同時進行で検討</li>
+                <li>ジョブリスティング実践講座は1.5倍速で復習済み</li>
+            </ul>
+        </section>
+    </div>
+    
+    <footer>
+        <p>JLCライト 3ヶ月個別サポート 議事録</p>
+        <p>作成日：2026年4月8日</p>
+    </footer>
+</body>
+</html>
